@@ -7,12 +7,14 @@
 //
 
 #import "ViewController.h"
+@import CocoaLumberjack;
 
 @interface ViewController ()
 
 @end
 
 @implementation ViewController
+static const DDLogLevel ddLogLevel = DDLogLevelDebug;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -26,4 +28,15 @@
 }
 
 
+- (IBAction)onTap:(id)sender {
+    @[][666];
+}
+
+- (IBAction)onAddLog:(id)sender {
+    DDLogVerbose(@"Verbose");
+    DDLogDebug(@"Debug");
+    DDLogInfo(@"Info");
+    DDLogWarn(@"Warn");
+    DDLogError(@"Error");
+}
 @end

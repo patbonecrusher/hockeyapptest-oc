@@ -13,6 +13,7 @@
 		43E881F1212A227E00152E42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43E881F0212A227E00152E42 /* Assets.xcassets */; };
 		43E881F4212A227E00152E42 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43E881F2212A227E00152E42 /* LaunchScreen.storyboard */; };
 		43E881F7212A227E00152E42 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E881F6212A227E00152E42 /* main.m */; };
+		CE01A8E83E3EC6ED41CE45E6 /* Pods_hockeyapptest_oc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B68F7DD7B10C1BB7EC1A71AD /* Pods_hockeyapptest_oc.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,9 @@
 		43E881F3212A227E00152E42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		43E881F5212A227E00152E42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		43E881F6212A227E00152E42 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		5729A9BFCD2F7868FB76903A /* Pods-hockeyapptest-oc.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hockeyapptest-oc.release.xcconfig"; path = "Pods/Target Support Files/Pods-hockeyapptest-oc/Pods-hockeyapptest-oc.release.xcconfig"; sourceTree = "<group>"; };
+		57BF41277533EE2944F17A7A /* Pods-hockeyapptest-oc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hockeyapptest-oc.debug.xcconfig"; path = "Pods/Target Support Files/Pods-hockeyapptest-oc/Pods-hockeyapptest-oc.debug.xcconfig"; sourceTree = "<group>"; };
+		B68F7DD7B10C1BB7EC1A71AD /* Pods_hockeyapptest_oc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hockeyapptest_oc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +37,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE01A8E83E3EC6ED41CE45E6 /* Pods_hockeyapptest_oc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A55A790F9F011D44C3D8252 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				57BF41277533EE2944F17A7A /* Pods-hockeyapptest-oc.debug.xcconfig */,
+				5729A9BFCD2F7868FB76903A /* Pods-hockeyapptest-oc.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		43E881DB212A227D00152E42 = {
 			isa = PBXGroup;
 			children = (
 				43E881E6212A227D00152E42 /* hockeyapptest-oc */,
 				43E881E5212A227D00152E42 /* Products */,
+				2A55A790F9F011D44C3D8252 /* Pods */,
+				6F1F4C193E01D67E439D371F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,6 +87,14 @@
 			path = "hockeyapptest-oc";
 			sourceTree = "<group>";
 		};
+		6F1F4C193E01D67E439D371F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B68F7DD7B10C1BB7EC1A71AD /* Pods_hockeyapptest_oc.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -78,9 +102,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 43E881FA212A227E00152E42 /* Build configuration list for PBXNativeTarget "hockeyapptest-oc" */;
 			buildPhases = (
+				ED07A679A5540EBA7419E1CE /* [CP] Check Pods Manifest.lock */,
 				43E881E0212A227D00152E42 /* Sources */,
 				43E881E1212A227D00152E42 /* Frameworks */,
 				43E881E2212A227D00152E42 /* Resources */,
+				9588266F71F5D4F1BEE8DEFF /* [CP] Embed Pods Frameworks */,
+				5609036A7145BBDABCE1E623 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -135,6 +162,63 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5609036A7145BBDABCE1E623 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-hockeyapptest-oc/Pods-hockeyapptest-oc-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/HockeySDK/HockeySDKResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/HockeySDKResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-hockeyapptest-oc/Pods-hockeyapptest-oc-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9588266F71F5D4F1BEE8DEFF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-hockeyapptest-oc/Pods-hockeyapptest-oc-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-hockeyapptest-oc/Pods-hockeyapptest-oc-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ED07A679A5540EBA7419E1CE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-hockeyapptest-oc-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		43E881E0212A227D00152E42 /* Sources */ = {
@@ -281,6 +365,7 @@
 		};
 		43E881FB212A227E00152E42 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 57BF41277533EE2944F17A7A /* Pods-hockeyapptest-oc.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -298,6 +383,7 @@
 		};
 		43E881FC212A227E00152E42 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5729A9BFCD2F7868FB76903A /* Pods-hockeyapptest-oc.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

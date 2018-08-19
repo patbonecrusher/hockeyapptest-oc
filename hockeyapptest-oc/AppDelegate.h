@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+@import HockeySDK;
+@import CocoaLumberjack;
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, BITHockeyManagerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (nonatomic) DDFileLogger *fileLogger;
 
 
 @end

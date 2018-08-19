@@ -10,6 +10,8 @@
 
 @interface ViewController : UIViewController
 
+- (IBAction)onTap:(id)sender;
+- (IBAction)onAddLog:(id)sender;
 
 @end
 

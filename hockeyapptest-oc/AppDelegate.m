@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+@import HockeySDK;
+@import CocoaLumberjack;
 
 @interface AppDelegate ()
 
@@ -14,8 +16,79 @@
 
 @implementation AppDelegate
 
+- (NSString *)userIDForHockeyManager:(BITHockeyManager *)hockeyManager componentManager:(BITHockeyBaseManager *)componentManager {
+    if (componentManager == hockeyManager.feedbackManager) {
+        return [NSString stringWithFormat:@"Feedback account=%@  device=%@", @"foo", @"bar"];
+    } else if (componentManager == hockeyManager.crashManager) {
+        return [NSString stringWithFormat:@"Feedback account=%@  device=%@", @"foo", @"bar"];
+    } else {
+        return nil;
+    }
+}
+
+// get the log content with a maximum byte size
+- (NSString *) getLogFilesContentWithMaxSize:(NSInteger)maxSize {
+    NSMutableString *description = [NSMutableString string];
+    
+    NSArray *sortedLogFileInfos = [[_fileLogger logFileManager] sortedLogFileInfos];
+    NSInteger count = [sortedLogFileInfos count];
+    
+    // we start from the last one
+    for (NSInteger index = count - 1; index >= 0; index--) {
+        DDLogFileInfo *logFileInfo = [sortedLogFileInfos objectAtIndex:index];
+        
+        NSData *logData = [[NSFileManager defaultManager] contentsAtPath:[logFileInfo filePath]];
+        if ([logData length] > 0) {
+            NSString *result = [[NSString alloc] initWithBytes:[logData bytes]
+                                                        length:[logData length]
+                                                      encoding: NSUTF8StringEncoding];
+            
+            [description appendString:result];
+        }
+    }
+    
+    if ([description length] > maxSize) {
+        description = (NSMutableString *)[description substringWithRange:NSMakeRange([description length]-maxSize-1, maxSize)];
+    }
+    
+    return description;
+}
+
+- (NSString *)applicationLogForCrashManager:(BITCrashManager *)crashManager {
+    NSString *description = [self getLogFilesContentWithMaxSize:5000]; // 5000 bytes should be enough!
+    if ([description length] == 0) {
+        return nil;
+    } else {
+        return description;
+    }
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+//    [DDLog addLogger:[DDTTYLogger sharedInstance]]; // TTY = Xcode console
+//    [DDLog addLogger:[DDASLLogger sharedInstance]]; // ASL = Apple System Logs
+    
+    _fileLogger = [[DDFileLogger alloc] init];
+    _fileLogger.maximumFileSize = (1024 * 64); // 64 KByte
+    _fileLogger.logFileManager.maximumNumberOfLogFiles = 1;
+    [_fileLogger rollLogFileWithCompletionBlock:nil];
+    [DDLog addLogger:_fileLogger];
+
+    
+    [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"f5daade2af2e413282f464201b57504d"];
+    [[BITHockeyManager sharedHockeyManager].crashManager setCrashManagerStatus:BITCrashManagerStatusAutoSend];
+    [[BITHockeyManager sharedHockeyManager] setUserName: [NSString stringWithFormat:@"%@-%@", @"foo", @"bar"]];
+    [[BITHockeyManager sharedHockeyManager] setDelegate: self];
+    [[BITHockeyManager sharedHockeyManager] startManager];
+
+    
+//    if (![[BITHockeyManager sharedHockeyManager] appEnvironment] == BIT) {
+//        PSDDFormatter *psLogger = [[PSDDFormatter alloc] init];
+//        [[DDTTYLogger sharedInstance] setLogFormatter:psLogger];
+    
+        [DDLog addLogger:[DDTTYLogger sharedInstance]];
+        [DDLog addLogger:[DDASLLogger sharedInstance]];
+//    }
+
     // Override point for customization after application launch.
     return YES;
 }
